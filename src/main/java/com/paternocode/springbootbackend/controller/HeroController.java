@@ -27,7 +27,6 @@ public class HeroController {
 
 	private final HeroService heroService;
 	
-	
 	public HeroController(HeroService heroService) {
 		super();
 		this.heroService = heroService;
@@ -44,7 +43,7 @@ public class HeroController {
 	}
 	
 	@PostMapping
-	public Hero addHero(@RequestBody @Valid Hero hero) {
+	public ResponseEntity<Hero> addHero(@RequestBody @Valid Hero hero) {
 		return heroService.addHero(hero);
 	}
 	

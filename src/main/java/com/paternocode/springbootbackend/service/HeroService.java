@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -32,19 +33,17 @@ public class HeroService {
 		return heroRepository.findAll();
 	}
 	
-	public Hero addHero(Hero hero) {
-		return heroRepository.save(hero);
+	public ResponseEntity<Hero> addHero(Hero hero){
+		return new ResponseEntity<Hero>(hero, HttpStatus.CREATED);
 	}
 	
 	public ResponseEntity<Hero> getHeroById(Long id) {
-		
 		Hero hero = heroRepository.findById(id).orElseThrow(()->new IllegalStateException("Hero with id:" + id + " not found."));
 		return ResponseEntity.ok(hero);
 	}
 	
 	public ResponseEntity<Hero> updateHero(Long id, Hero updHero){
 		Hero hero = heroRepository.findById(id).orElseThrow(()->new IllegalStateException("Hero with id:" + id + " not found."));
-	
 		hero.setName(updHero.getName());
 		hero.setCode(updHero.getCode());
 		hero.setSpecialty(updHero.getSpecialty());

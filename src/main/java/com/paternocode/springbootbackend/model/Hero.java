@@ -81,6 +81,7 @@ public class Hero {
 		this.specialty = specialty;
 		this.videoId = videoId;
 	}
+
 	public Hero() {
 		super();
 		// TODO Auto-generated constructor stub
