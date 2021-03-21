@@ -34,7 +34,8 @@ public class HeroService {
 	}
 	
 	public ResponseEntity<Hero> addHero(Hero hero){
-		return new ResponseEntity<Hero>(hero, HttpStatus.CREATED);
+		Hero newHero = heroRepository.save(hero);
+		return new ResponseEntity<Hero>(newHero, HttpStatus.CREATED);
 	}
 	
 	public ResponseEntity<Hero> getHeroById(Long id) {
